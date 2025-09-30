@@ -82,7 +82,7 @@ CREATE INDEX ON documents USING ivfflat (embedding vector_cosine_ops);
 2. **Ask a Question**: Enter your question in the chat box at the bottom.
 3. **Check the Answer**: The AI will generate an answer based on the uploaded documents.
 
-## 🛠️ 기술 스택
+## 🛠️ Tech Stack
 
 - **Backend**: FastAPI, Python
 - **Database**: Supabase (PostgreSQL + pgvector)
