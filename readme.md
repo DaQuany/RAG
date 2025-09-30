@@ -1,63 +1,62 @@
-# 🤖 RAG 질의응답 시스템
+# 🤖 RAG Question-Answering System
 
-Supabase와 Google Gemini API를 사용한 문서 기반 질의응답 시스템입니다.
+A document-based question-answering system using Supabase and the Google Gemini API.
 
-## 🚀 빠른 시작
+## 🚀 Quick Start
 
-### 1. 파일 구조 확인
-```
+### 1. Check the File Structure
 rag-system/
-├── main.py              # 백엔드 서버
-├── index.html           # 프론트엔드
-├── requirements.txt     # Python 패키지 목록
-├── .env                # 환경 변수 (직접 설정 필요)
-├── run.py              # 실행 스크립트
-└── README.md           # 이 파일
+├── main.py              # Backend server
+├── index.html           # Frontend
+├── requirements.txt     # List of Python packages
+├── .env                 # Environment variables (needs to be set up manually)
+├── run.py               # Execution script
+└── README.md            # This file
 ```
 
-### 2. 환경 변수 설정
+### 2. Set Environment Variables
 
-`.env` 파일을 열고 다음 정보를 입력하세요:
+Open the `.env` file and enter the following information:
 
 ```bash
-# Supabase 설정
-SUPABASE_URL=https://your-project.supabase.co
+# Supabase Settings
+SUPABASE_URL=[https://your-project.supabase.co](https://your-project.supabase.co)
 SUPABASE_KEY=your_supabase_anon_key
 
-# Google Gemini API 설정  
+# Google Gemini API Settings
 GEMINI_API_KEY=your_gemini_api_key
 ```
 
-### 3. 실행
+### 3. Run
 
 ```bash
 python run.py
 ```
 
-또는 수동으로:
+Or manually:
 
 ```bash
-# 패키지 설치
+# Install packages
 pip install -r requirements.txt
 
-# 서버 실행
+# Run the server
 python main.py
 
-# 브라우저에서 index.html 파일 열기
+# Open the index.html file in your browser
 ```
 
-## ⚙️ 사전 준비사항
+## ⚙️ Prerequisites
 
-### 1. Supabase 설정
+### 1. Supabase Setup
 
-1. [Supabase](https://supabase.com)에서 프로젝트 생성
-2. SQL 에디터에서 다음 쿼리 실행:
+1. Create a project on [Supabase](https://supabase.com)
+2. Run the following query in the SQL Editor:
 
 ```sql
--- 벡터 확장 활성화
+-- Enable vector extension
 CREATE EXTENSION IF NOT EXISTS vector;
 
--- 문서 테이블 생성
+-- Create documents table
 CREATE TABLE documents (
     id SERIAL PRIMARY KEY,
     content TEXT NOT NULL,
@@ -66,71 +65,71 @@ CREATE TABLE documents (
     created_at TIMESTAMP DEFAULT NOW()
 );
 
--- 벡터 검색용 인덱스 생성
+-- Create an index for vector search
 CREATE INDEX ON documents USING ivfflat (embedding vector_cosine_ops);
 ```
 
-3. 프로젝트 URL과 anon key를 `.env`에 입력
+3. Enter the project URL and anon key into the .env file.
 
-### 2. Google Gemini API 설정
+### 2. Google Gemini API Setup
 
-1. [Google AI Studio](https://makersuite.google.com/)에서 API 키 생성
-2. API 키를 `.env`에 입력
+1. Generate an API key from [Google AI Studio](https://makersuite.google.com/)
+2. Enter the API key into the .env file.
 
-## 📱 사용법
+## 📱 How to Use
 
-1. **문서 추가**: 상단에 문서 내용을 입력하고 "문서 추가" 클릭
-2. **질문하기**: 하단 채팅창에서 질문 입력
-3. **답변 확인**: AI가 업로드된 문서를 바탕으로 답변 생성
+1. **Add Document**: Enter the document content in the upper section and click "Add Document".
+2. **Ask a Question**: Enter your question in the chat box at the bottom.
+3. **Check the Answer**: The AI will generate an answer based on the uploaded documents.
 
 ## 🛠️ 기술 스택
 
-- **백엔드**: FastAPI, Python
-- **데이터베이스**: Supabase (PostgreSQL + pgvector)
-- **임베딩**: SentenceTransformers (ko-sroberta-multitask)
+- **Backend**: FastAPI, Python
+- **Database**: Supabase (PostgreSQL + pgvector)
+- **Embedding**: SentenceTransformers (ko-sroberta-multitask)
 - **LLM**: Google Gemini Pro
-- **프론트엔드**: HTML, CSS, JavaScript
+- **Frontend**: HTML, CSS, JavaScript
 
-## 🔧 문제 해결
+## 🔧 Troubleshooting
 
-### 자주 발생하는 오류
+### Common Errors
 
-1. **환경 변수 오류**
+1. **Environment Variable Error**
    ```
-   ValueError: 환경 변수가 설정되지 않았습니다
+   ValueError: Environment variables not set
    ```
-   → `.env` 파일의 API 키들을 확인하세요
+   → Check the API keys in your .env file.
 
-2. **Supabase 연결 오류**
+2. **Supabase Connection Error**
    ```
    supabase connection failed
    ```
-   → Supabase URL과 키가 정확한지, 테이블이 생성되었는지 확인하세요
+   → Verify that the Supabase URL and key are correct and that the tables have been created.
 
-3. **Gemini API 오류**
+3. **Gemini API Error**
    ```
    google.generativeai.types.generation_types.BlockedPromptException
    ```
-   → API 키가 유효한지, 요청이 정책에 맞는지 확인하세요
+   →  Check if the API key is valid and if the request complies with the usage policies.
 
-4. **CORS 오류**
+4. **CORS Error**
    ```
    Access to fetch at 'http://localhost:8000' from origin 'file://' has been blocked
    ```
-   → 백엔드 서버가 실행되고 있는지 확인하세요
+   → Make sure the backend server is running.
 
-## 📞 지원
+## 📞 Support
 
-문제가 발생하면:
-1. 터미널의 오류 메시지를 확인
-2. `.env` 파일 설정 재확인
-3. Supabase 대시보드에서 테이블 생성 상태 확인
-4. 브라우저 개발자 도구에서 네트워크 오류 확인
+If you encounter a problem:
+1. Check the error message in the terminal.
+2. Re-check the .env file settings.
+3. Check the table creation status on the Supabase dashboard.
+4. Check for network errors in the browser's developer tools.
 
-## 📈 확장 가능성
+## 📈 Potential Enhancements
 
-- 파일 업로드 기능 추가
-- 사용자 인증 시스템
-- 대화 기록 저장
-- 다중 문서 컬렉션 관리
-- PDF, Word 파일 지원
+- Add file upload functionality
+- User authentication system
+- Save chat history
+- Manage multiple document collections
+- Support for PDF, Word files

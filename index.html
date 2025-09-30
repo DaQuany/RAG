@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 챗봇 - 질의응답 시스템</title>
+    <title>AI CHATBOT - Q&A SYSTEM</title>
     <style>
         * {
             margin: 0;
@@ -24,7 +24,7 @@
             background: #f9fafb;
         }
 
-        /* 사이드바 스타일 */
+        /* Sidebar style */
         .sidebar {
             width: 260px;
             background: white;
@@ -180,7 +180,7 @@
             background: #f3f4f6;
         }
 
-        /* 메인 채팅 영역 */
+        /* main chat area */
         .main-chat {
             flex: 1;
             display: flex;
@@ -252,7 +252,7 @@
             color: #374151;
         }
 
-        /* 메시지 영역 */
+        /* message area */
         .messages-container {
             flex: 1;
             overflow-y: auto;
@@ -347,7 +347,7 @@
             color: #2563eb;
         }
 
-        /* 타이핑 인디케이터 */
+        /* typing indicator */
         .typing-indicator {
             display: flex;
             justify-content: flex-start;
@@ -379,7 +379,7 @@
         .typing-dot:nth-child(1) { animation-delay: -0.32s; }
         .typing-dot:nth-child(2) { animation-delay: -0.16s; }
 
-        /* 입력 영역 */
+        /* input area */
         .input-area {
             background: white;
             border-top: 1px solid #e5e7eb;
@@ -447,7 +447,7 @@
             margin-top: 8px;
         }
 
-        /* 오버레이 (모바일용) */
+        /* overray (mobile) */
         .overlay {
             position: fixed;
             inset: 0;
@@ -456,7 +456,7 @@
             display: none;
         }
 
-        /* 에러 및 성공 메시지 */
+        /* error and success message */
         .alert {
             padding: 12px 16px;
             border-radius: 8px;
@@ -482,7 +482,7 @@
             border: 1px solid #bbf7d0;
         }
 
-        /* 아이콘 */
+        /* icon */
         .icon {
             width: 18px;
             height: 18px;
@@ -501,7 +501,7 @@
             height: 14px;
         }
 
-        /* 애니메이션 */
+        /* animation */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -522,7 +522,7 @@
             }
         }
 
-        /* 반응형 디자인 */
+        /* reacting design */
         @media (max-width: 1024px) {
             .sidebar {
                 position: fixed;
@@ -561,7 +561,7 @@
             }
         }
 
-        /* 숨겨진 파일 입력 */
+        /* hidden file input */
         .hidden {
             display: none;
         }
@@ -569,11 +569,11 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- 사이드바 -->
+        <!-- sidebar -->
         <div class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-title">
-                    🤖 AI 챗봇
+                    🤖 AI CHATBOT
                 </div>
                 <button class="remove-file-btn" onclick="toggleSidebar()" style="display: none;" id="closeSidebar">
                     <svg class="icon-sm" viewBox="0 0 24 24">
@@ -588,7 +588,7 @@
                     <svg class="icon-sm" viewBox="0 0 24 24">
                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                     </svg>
-                    새 대화 시작
+                    NEW CONVERSATION START
                 </button>
             </div>
             
@@ -598,12 +598,12 @@
                         <circle cx="12" cy="12" r="3"></circle>
                         <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>
-                    정보
+                    INFORMATION
                 </button>
             </div>
         </div>
 
-        <!-- 메인 채팅 영역 -->
+        <!-- main chatting area -->
         <div class="main-chat">
             <div class="chat-header">
                 <div class="chat-header-left">
@@ -614,11 +614,11 @@
                             <line x1="3" y1="18" x2="21" y2="18"></line>
                         </svg>
                     </button>
-                    <div class="chat-title">AI 어시스턴트</div>
-                    <div class="status-badge" id="statusBadge">연결 확인중...</div>
+                    <div class="chat-title">AI ASSISTANT</div>
+                    <div class="status-badge" id="statusBadge">CONNECTION CHECKING...</div>
                 </div>
                 <div class="chat-header-right">
-                    <button class="header-btn" onclick="checkConnection()" title="연결 상태 확인">
+                    <button class="header-btn" onclick="checkConnection()" title="CONEECTION CHECK CONFIRM">
                         <svg class="icon" viewBox="0 0 24 24">
                             <polyline points="23,4 23,10 17,10"></polyline>
                             <polyline points="1,20 1,14 7,14"></polyline>
@@ -631,7 +631,7 @@
             <div class="messages-container" id="messagesContainer">
                 <div class="message bot">
                     <div class="message-content">
-                        <div class="message-text">안녕하세요! AI 어시스턴트입니다. 질문을 해주세요.</div>
+                        <div class="message-text">HELLO! THIS IS YOUR AI ASSISTANT! PLEASE ASK ME A QUESTION</div>
                         <div class="message-time" id="initialTime"></div>
                     </div>
                 </div>
@@ -643,7 +643,7 @@
                         <textarea 
                             class="message-input" 
                             id="messageInput" 
-                            placeholder="메시지를 입력하세요..."
+                            placeholder="TYPE IN YOUR QUESTION..."
                             onkeydown="handleKeyPress(event)"
                             oninput="autoResize(this)"
                         ></textarea>
@@ -655,47 +655,47 @@
                         </svg>
                     </button>
                 </div>
-                <div class="input-hint">Enter로 전송, Shift+Enter로 줄바꿈</div>
+                <div class="input-hint">Send with Enter, change line with Shift+Enter</div>
             </div>
         </div>
     </div>
 
-    <!-- 오버레이 (모바일용) -->
+    <!-- overlay (mobile) -->
     <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
 
     <script>
         const API_BASE_URL = 'http://localhost:8000';
         let isConnected = false;
 
-        // 페이지 로드시 초기화
+        // reset when page load
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('initialTime').textContent = new Date().toLocaleTimeString();
             checkConnection();
         });
 
-        // 연결 상태 확인
+        // check connection state
         async function checkConnection() {
             try {
                 const response = await fetch(`${API_BASE_URL}/health`);
                 if (response.ok) {
                     const data = await response.json();
                     isConnected = true;
-                    document.getElementById('statusBadge').textContent = '온라인';
+                    document.getElementById('statusBadge').textContent = 'ONLINE';
                     document.getElementById('statusBadge').style.background = '#d1fae5';
                     document.getElementById('statusBadge').style.color = '#065f46';
                 } else {
-                    throw new Error('서버 응답 오류');
+                    throw new Error('SERVER ERROR');
                 }
             } catch (error) {
                 isConnected = false;
-                document.getElementById('statusBadge').textContent = '오프라인';
+                document.getElementById('statusBadge').textContent = 'OFFLINE';
                 document.getElementById('statusBadge').style.background = '#fee2e2';
                 document.getElementById('statusBadge').style.color = '#dc2626';
-                console.error('연결 확인 실패:', error);
+                console.error('FAIL TO CHECK CONNECTION:', error);
             }
         }
 
-        // 사이드바 토글
+        // sidebar toggle
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
@@ -718,25 +718,25 @@
             closeSidebar.style.display = 'none';
         }
 
-        // 새 채팅 시작
+        // NEW CHAT START
         function startNewChat() {
             const messagesContainer = document.getElementById('messagesContainer');
             messagesContainer.innerHTML = `
                 <div class="message bot">
                     <div class="message-content">
-                        <div class="message-text">안녕하세요! AI 어시스턴트입니다. 질문을 해주세요.</div>
+                        <div class="message-text">HELLO! THIS IS YOUR AI ASSISTANT. ASK ME A QUESTION.</div>
                         <div class="message-time">${new Date().toLocaleTimeString()}</div>
                     </div>
                 </div>
             `;
         }
 
-        // 정보 표시
+        // information view
         function showInfo() {
-            addMessage("RAG 질의응답 시스템 v1.0\n- Gemini AI 기반 답변 생성\n- Supabase 벡터 데이터베이스\n- 실시간 문서 검색", 'bot');
+            addMessage("RAG Q&A SYSTEM v1.0\n- Gemini AI base\n- Supabase vector databasae\n- real time document search", 'bot');
         }
 
-        // 텍스트 영역 자동 크기 조절
+        // text area auto resize
         function autoResize(textarea) {
             textarea.style.height = 'auto';
             textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
@@ -745,7 +745,7 @@
             sendBtn.disabled = !textarea.value.trim();
         }
 
-        // 키 이벤트 처리
+        // key event
         function handleKeyPress(event) {
             if (event.key === 'Enter' && !event.shiftKey) {
                 event.preventDefault();
@@ -753,26 +753,26 @@
             }
         }
 
-        // 메시지 전송
+        // sending message
         async function sendMessage() {
             const input = document.getElementById('messageInput');
             const message = input.value.trim();
             
             if (!message) return;
 
-            // 연결 상태 확인
+            // check connection
             if (!isConnected) {
-                showAlert('서버에 연결할 수 없습니다. 연결 상태를 확인해주세요.', 'error');
+                showAlert('Cannot connect to the server. Check connection.', 'error');
                 return;
             }
 
-            // 사용자 메시지 추가
+            // Add user message
             addMessage(message, 'user');
             input.value = '';
             input.style.height = 'auto';
             document.getElementById('sendBtn').disabled = true;
 
-            // 타이핑 인디케이터 표시
+            // typing indication show
             const typingId = addTypingIndicator();
 
             try {
@@ -794,17 +794,17 @@
                 } else {
                     const errorData = await response.json();
                     removeTypingIndicator(typingId);
-                    addMessage(`죄송합니다. 답변 생성 중 오류가 발생했습니다: ${errorData.detail || '알 수 없는 오류'}`, 'bot');
+                    addMessage(`Sorry. There was an error with generating an answer: ${errorData.detail || 'unknown error'}`, 'bot');
                 }
             } catch (error) {
                 removeTypingIndicator(typingId);
-                addMessage(`네트워크 오류가 발생했습니다. 서버 연결 상태를 확인해주세요.`, 'bot');
-                // 연결 상태 재확인
+                addMessage(`There is a network error. Please check the server connection.`, 'bot');
+                // Recheck connection
                 checkConnection();
             }
         }
 
-        // 메시지 추가
+        // Add message
         function addMessage(content, type, relevantDocs = null) {
             const messagesContainer = document.getElementById('messagesContainer');
             const messageId = 'msg-' + Date.now() + '-' + Math.random();
@@ -814,11 +814,11 @@
                 relevantDocsHtml = `
                     <div class="relevant-docs">
                         <div class="relevant-docs-title">
-                            📚 참고 문서 (유사도 순)
+                            📚 Documents (relevance)
                         </div>
                         ${relevantDocs.map(doc => `
                             <div class="relevant-doc">
-                                <div class="similarity-score">유사도: ${(doc.similarity * 100).toFixed(1)}%</div>
+                                <div class="similarity-score">Relevance: ${(doc.similarity * 100).toFixed(1)}%</div>
                                 <div>${escapeHtml(doc.content)}</div>
                             </div>
                         `).join('')}
@@ -840,14 +840,14 @@
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
-        // HTML 이스케이프
+        // HTML escape
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML.replace(/\n/g, '<br>');
         }
 
-        // 타이핑 인디케이터 추가
+        // Add typing indicator
         function addTypingIndicator() {
             const messagesContainer = document.getElementById('messagesContainer');
             const typingId = 'typing-' + Date.now();
@@ -870,7 +870,7 @@
             return typingId;
         }
 
-        // 타이핑 인디케이터 제거
+        // delete typing indicator
         function removeTypingIndicator(typingId) {
             const typingElement = document.getElementById(typingId);
             if (typingElement) {
@@ -878,7 +878,7 @@
             }
         }
 
-        // 알림 표시
+        // show alert
         function showAlert(message, type = 'error') {
             const alertDiv = document.createElement('div');
             alertDiv.className = `alert ${type}`;
@@ -893,7 +893,7 @@
             }, 5000);
         }
 
-        // 윈도우 리사이즈 이벤트
+        // window resize event
         window.addEventListener('resize', function() {
             if (window.innerWidth > 1024) {
                 const sidebar = document.getElementById('sidebar');
@@ -903,7 +903,7 @@
             }
         });
 
-        // 주기적으로 연결 상태 확인 (30초마다)
+        //check connection every 30 sec
         setInterval(checkConnection, 30000);
     </script>
 </body>
